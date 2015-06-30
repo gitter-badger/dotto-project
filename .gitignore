@@ -1,0 +1,16 @@
+/*
+!.gitignore
+!composer.json
+!composer.lock
+
+!local/
+local/*
+!local/modules
+local/modules/*
+!local/modules/WareHouse
+
+!templates/
+templates/*
+!templates/frontOffice/
+templates/frontOffice/*
+!templates/frontOffice/dotto/
