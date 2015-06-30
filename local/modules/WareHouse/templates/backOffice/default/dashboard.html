@@ -1,0 +1,22 @@
+{extends file="admin-layout.tpl"}
+
+{block name="no-return-functions"}
+{$admin_current_location = 'warehouse'}
+{/block}
+
+{block name="page-title"}{intl l='Dashboard'}{/block}
+
+{block name="main-content"}
+<div class="homepage">
+    <div id="wrapper" class="container">
+
+        <div class="general-block-decorator dashboard">
+
+            Welcome {admin attr="firstname"} {admin attr="lastname"}
+
+        </div>
+    </div>
+</div>
+
+
+{/block}
