@@ -7,6 +7,7 @@
 local/*
 !local/modules
 local/modules/*
+# version custom modules
 !local/modules/WareHouse
 
 !templates/
@@ -14,3 +15,6 @@ templates/*
 !templates/frontOffice/
 templates/frontOffice/*
 !templates/frontOffice/dotto/
+!templates/backOffice/dotto/
+!templates/email/dotto/
+!templates/pdf/dotto/
