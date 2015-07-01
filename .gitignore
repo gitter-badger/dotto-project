@@ -9,6 +9,7 @@ local/*
 local/modules/*
 # version custom modules
 !local/modules/WareHouse
+!local/modules/Store
 
 !templates/
 templates/*

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<routes xmlns="http://symfony.com/schema/routing" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
+  <!--
+
+    if a /admin/module/store/ route is provided, a "Configuration" button will be displayed
+    for the module in the module list. Clicking this button will invoke this route.
+
+    <route id="my_route_id" path="/admin/module/store">
+        <default key="_controller">Store\Full\Class\Name\Of\YourConfigurationController::methodName</default>
+    </route>
+
+    <route id="my_route_id" path="/admin/module/store/route-name">
+        <default key="_controller">Store\Full\Class\Name\Of\YourAdminController::methodName</default>
+    </route>
+
+    <route id="my_route_id" path="/my/route/name">
+        <default key="_controller">Store\Full\Class\Name\Of\YourOtherController::methodName</default>
+    </route>
+
+    ...add as many routes as required.
+
+    <route>
+    ...
+    </route>
+    -->
+  <route id="store.store.list" path="/admin/module/Store/store" methods="get">
+    <default key="_controller">Store:Store:default</default>
+  </route>
+  <route id="store.store.create" path="/admin/module/Store/store" methods="post">
+    <default key="_controller">Store:Store:create</default>
+  </route>
+  <route id="store.store.view" path="/admin/module/Store/store/edit" methods="get">
+    <default key="_controller">Store:Store:update</default>
+  </route>
+  <route id="store.store.edit" path="/admin/module/Store/store/edit" methods="post">
+    <default key="_controller">Store:Store:processUpdate</default>
+  </route>
+
+  <route id="store.store.delete" path="/admin/module/Store/store/delete" methods="post">
+    <default key="_controller">Store:Store:delete</default>
+  </route>
+  <route id="store.store.update_position" path="/admin/module/Store/store/updatePosition" methods="get">
+    <default key="_controller">Store:Store:updatePosition</default>
+  </route>
+
+  <route id="store.store.toggle_visibility" path="/admin/module/Store/store/toggleVisibility" methods="get">
+    <default key="_controller">Store:Store:setToggleVisibility</default>
+  </route>
+
+    <route id="store.store.gps.view" path="/admin/module/Store/store/gps/edit" methods="get">
+        <default key="_controller">Store:Store:gpsUpdate</default>
+    </route>
+
+    <route id="store.store.gps.edit" path="/admin/module/Store/store/gps/edit" methods="post">
+        <default key="_controller">Store:Store:processGpsUpdate</default>
+    </route>
+
+</routes>

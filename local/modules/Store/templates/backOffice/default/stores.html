@@ -1,0 +1,640 @@
+{extends file="admin-layout.tpl"}
+{default_translation_domain domain='store.bo.default'}
+
+{block name="no-return-functions"}
+    {$admin_current_location = 'tools'}
+{/block}
+
+{block name="page-title"}{intl l='Store'}{/block}
+
+{block name="check-resource"}admin.module{/block}
+{block name="check-access"}view{/block}
+{block name="check-module"}Store{/block}
+
+{block name="main-content"}
+    <div id="wrapper" class="container">
+
+        {if $general_error}
+            <div class="alert alert-danger">
+                {$general_error}
+            </div>
+        {/if}
+
+        <!-- Store list -->
+        <div class="general-block-decorator">
+            <div class="table-responsive">
+                <table class="table table-striped table-condensed" id="store-table">
+                    <caption class="clearfix">
+                        {intl l="Store"}
+
+                        {loop name="auth-create" type="auth" role="ADMIN" resource="admin.module" access="CREATE" module="Store"}
+                            <div class="pull-right">
+                                <a class="btn btn-default btn-primary" title="{intl l='Create a new Store entry' d='store.bo.default'}" data-target="#store-create" data-toggle="modal">
+                                    <i class="glyphicon glyphicon-plus-sign"></i>
+                                </a>
+                            </div>
+                        {/loop}
+                    </caption>
+
+                    <thead>
+                    <tr>
+                        <th>
+                            {admin_sortable_header
+                                current_order=$order
+                                order='id'
+                                reverse_order='id-reverse'
+                                path={url path='/admin/module/Store/store' target='store-table'}
+                                label="{intl l='Id' d='store.bo.default'}"
+                            }
+                        </th>
+                        <th>
+                            {admin_sortable_header
+                                current_order=$order
+                                order='visible'
+                                reverse_order='visible-reverse'
+                                path={url path='/admin/module/Store/store' target='store-table'}
+                                label="{intl l='Visible' d='store.bo.default'}"
+                            }
+                        </th>
+                        <th>
+                            {admin_sortable_header
+                                current_order=$order
+                                order='position'
+                                reverse_order='position-reverse'
+                                path={url path='/admin/module/Store/store' target='store-table'}
+                                label="{intl l='Position' d='store.bo.default'}"
+                            }
+                        </th>
+                        <th>
+                            {admin_sortable_header
+                                current_order=$order
+                                order='title'
+                                reverse_order='title-reverse'
+                                path={url path='/admin/module/Store/store' target='store-table'}
+                                label="{intl l='Title' d='store.bo.default'}"
+                            }
+                        </th>
+                        <th>
+                            {admin_sortable_header
+                                current_order=$order
+                                order='admin_id'
+                                reverse_order='admin_id-reverse'
+                                path={url path='/admin/module/Store/store' target='store-table'}
+                                label="{intl l='AdminId' d='store.bo.default'}"
+                            }
+                        </th>
+                        <th>
+                            {admin_sortable_header
+                                current_order=$order
+                                order='company'
+                                reverse_order='company-reverse'
+                                path={url path='/admin/module/Store/store' target='store-table'}
+                                label="{intl l='Company' d='store.bo.default'}"
+                            }
+                        </th>
+                        <th>
+                            {admin_sortable_header
+                                current_order=$order
+                                order='firstname'
+                                reverse_order='firstname-reverse'
+                                path={url path='/admin/module/Store/store' target='store-table'}
+                                label="{intl l='Firstname' d='store.bo.default'}"
+                            }
+                        </th>
+                        <th>
+                            {admin_sortable_header
+                                current_order=$order
+                                order='lastname'
+                                reverse_order='lastname-reverse'
+                                path={url path='/admin/module/Store/store' target='store-table'}
+                                label="{intl l='Lastname' d='store.bo.default'}"
+                            }
+                        </th>
+                        <th>
+                            {admin_sortable_header
+                                current_order=$order
+                                order='address1'
+                                reverse_order='address1-reverse'
+                                path={url path='/admin/module/Store/store' target='store-table'}
+                                label="{intl l='Address1' d='store.bo.default'}"
+                            }
+                        </th>
+                        <th>
+                            {admin_sortable_header
+                                current_order=$order
+                                order='address2'
+                                reverse_order='address2-reverse'
+                                path={url path='/admin/module/Store/store' target='store-table'}
+                                label="{intl l='Address2' d='store.bo.default'}"
+                            }
+                        </th>
+                        <th>
+                            {admin_sortable_header
+                                current_order=$order
+                                order='address3'
+                                reverse_order='address3-reverse'
+                                path={url path='/admin/module/Store/store' target='store-table'}
+                                label="{intl l='Address3' d='store.bo.default'}"
+                            }
+                        </th>
+                        <th>
+                            {admin_sortable_header
+                                current_order=$order
+                                order='zipcode'
+                                reverse_order='zipcode-reverse'
+                                path={url path='/admin/module/Store/store' target='store-table'}
+                                label="{intl l='Zipcode' d='store.bo.default'}"
+                            }
+                        </th>
+                        <th>
+                            {admin_sortable_header
+                                current_order=$order
+                                order='city'
+                                reverse_order='city-reverse'
+                                path={url path='/admin/module/Store/store' target='store-table'}
+                                label="{intl l='City' d='store.bo.default'}"
+                            }
+                        </th>
+                        <th>
+                            {admin_sortable_header
+                                current_order=$order
+                                order='phone'
+                                reverse_order='phone-reverse'
+                                path={url path='/admin/module/Store/store' target='store-table'}
+                                label="{intl l='Phone' d='store.bo.default'}"
+                            }
+                        </th>
+                        <th>
+                            {admin_sortable_header
+                                current_order=$order
+                                order='cellphone'
+                                reverse_order='cellphone-reverse'
+                                path={url path='/admin/module/Store/store' target='store-table'}
+                                label="{intl l='Cellphone' d='store.bo.default'}"
+                            }
+                        </th>
+                        <th>
+                            {admin_sortable_header
+                                current_order=$order
+                                order='vat_number'
+                                reverse_order='vat_number-reverse'
+                                path={url path='/admin/module/Store/store' target='store-table'}
+                                label="{intl l='VatNumber' d='store.bo.default'}"
+                            }
+                        </th>
+                        <th>
+                            {admin_sortable_header
+                                current_order=$order
+                                order='lat'
+                                reverse_order='lat-reverse'
+                                path={url path='/admin/module/Store/store' target='store-table'}
+                                label="{intl l='Lat' d='store.bo.default'}"
+                            }
+                        </th>
+                        <th>
+                            {admin_sortable_header
+                                current_order=$order
+                                order='lng'
+                                reverse_order='lng-reverse'
+                                path={url path='/admin/module/Store/store' target='store-table'}
+                                label="{intl l='Lng' d='store.bo.default'}"
+                            }
+                        </th>
+                        <th>
+                            {intl l="Actions"}
+                        </th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {loop name="store-list" type="store" order=$order}
+                        <tr>
+                            <td>
+                                <a href="{url path='/admin/module/Store/store/edit' store_id=$ID}">{$ID}</a>
+                            </td>
+                            <td>
+                                {loop type="auth" name="can_change" role="ADMIN" resource="admin.module" module="Store" access="UPDATE"}
+                                    <div class="make-switch visibleToggle" data-id="{$ID}"  data-on="success" data-off="danger" data-on-label="<i class='glyphicon glyphicon-ok'></i>" data-off-label="<i class='glyphicon glyphicon-remove'></i>">
+                                        <input type="checkbox" class="visibleToggle" {if $VISIBLE}checked="checked"{/if}>
+                                    </div>
+                                {/loop}
+
+                                {elseloop rel="can_change"}
+                                    <div class="make-switch switch-small" data-on="success" data-off="danger" data-on-label="<i class='glyphicon glyphicon-ok'></i>" data-off-label="<i class='glyphicon glyphicon-remove'></i>">
+                                        <input type="checkbox" class="disabled" disabled="disabled" {if $VISIBLE}checked="checked"{/if}>
+                                    </div>
+                                {/elseloop}
+                            </td>
+                            <td>
+                                {admin_position_block
+                                    resource="admin.module"
+                                    access="UPDATE"
+                                    module="Store"
+                                    path="/admin/module/Store/store/updatePosition"
+                                    url_parameter="store_id"
+                                    in_place_edit_class="store-position-change"
+                                    position="$POSITION"
+                                    id="$ID"
+                                }
+                            </td>
+                            <td>
+                                <a href="{url path='/admin/module/Store/store/edit' store_id=$ID}">{$TITLE}</a>
+                            </td>
+                            <td>
+                                {$ADMIN_ID}
+                            </td>
+                            <td>
+                                {$COMPANY}
+                            </td>
+                            <td>
+                                {$FIRSTNAME}
+                            </td>
+                            <td>
+                                {$LASTNAME}
+                            </td>
+                            <td>
+                                {$ADDRESS1}
+                            </td>
+                            <td>
+                                {$ADDRESS2}
+                            </td>
+                            <td>
+                                {$ADDRESS3}
+                            </td>
+                            <td>
+                                {$ZIPCODE}
+                            </td>
+                            <td>
+                                {$CITY}
+                            </td>
+                            <td>
+                                {$PHONE}
+                            </td>
+                            <td>
+                                {$CELLPHONE}
+                            </td>
+                            <td>
+                                {$VAT_NUMBER}
+                            </td>
+                            <td>
+                                {$LAT}
+                            </td>
+                            <td>
+                                {$LNG}
+                            </td>
+                            {* Actions *}
+                            <td>
+                                <div class="btn-group">
+                                    {loop name="auth-edit" type="auth" role="ADMIN" resource="admin.module" access="UPDATE" module="Store"}
+                                        <a class="btn btn-default btn-xs" title="{intl l='Edit this Store' d='store.bo.default'}"  href="{url path='/admin/module/Store/store/edit' store_id=$ID}">
+                                            <i class="glyphicon glyphicon-edit"></i>
+                                        </a>
+                                    {/loop}
+                                    {loop name="auth-edit" type="auth" role="ADMIN" resource="admin.module" access="UPDATE" module="Store"}
+                                        <a class="btn btn-default btn-xs" title="{intl l='Edit this Store' d='store.bo.default'}"  href="{url path='/admin/module/Store/store/gps/edit' store_id=$ID}">
+                                            <i class="glyphicon glyphicon-edit"></i>
+                                        </a>
+                                    {/loop}
+                                    {loop name="auth-delete" type="auth" role="ADMIN" resource="admin.module" access="DELETE" module="Store"}
+                                        <a class="btn btn-default btn-xs store-delete" title="{intl l='Delete this Store' d='store.bo.default'}" data-target="#store-delete" data-toggle="modal" data-id="{$ID}">
+                                            <i class="glyphicon glyphicon-trash"></i>
+                                        </a>
+                                    {/loop}
+                                </div>
+                            </td>
+                        </tr>
+                    {/loop}
+                    {elseloop rel="store-list"}
+                        <tr>
+                            <td colspan="1000">
+                                <div class="alert alert-info">
+                                    {intl l="There is no Store" d="store.bo.default"}
+                                </div>
+                            </td>
+                        </tr>
+                    {/elseloop}
+                    </tbody>
+
+                    {ifloop rel="store-list"}
+                    <tfoot>
+                        <tr>
+                            <td colspan="7">
+                                {include
+                                file           = "includes/pagination.html"
+
+                                loop_ref       = "store-list"
+                                max_page_count = 20
+                                page_url       = "{url path="/admin/module/Store/store" order=$order target='store-table'}"
+                                }
+                            </td>
+                        </tr>
+                    </tfoot>
+                    {/ifloop}
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    {* CREATE Modal *}
+
+    {form name="store.create"}
+    {capture "store_create"}
+        {form_hidden_fields form=$form}
+
+        {form_field form=$form field="locale"}
+            <input type="hidden" name="{$name}" value="{$edit_language_locale}" />
+        {/form_field}
+
+        {render_form_field form=$form field="success_url" value={url path='/admin/module/Store/store/edit?store_id=_ID_'}}
+
+        {form_field form=$form field="visible"}
+            <div class="form-group">
+                <label class="control-label" for="{$label_attr.for}">
+                    {$label}
+                    {if $required}<span class="required">*</span>{/if}
+                </label>
+
+                {form_error form=$form field="visible"}{$message}{/form_error}
+
+                <input type="checkbox" name="{$name}" id="{$label_attr.for}" {if $VISIBLE}checked{/if} placeholder="{intl l='The Store visible'}" />
+            </div>
+        {/form_field}
+        {form_field form=$form field="title"}
+            <div class="form-group">
+                <label class="control-label" for="{$label_attr.for}">
+                    {$label}
+                    {if $required}<span class="required">*</span>{/if}
+                </label>
+
+                {form_error form=$form field="title"}{$message}{/form_error}
+
+                <input type="text" class="form-control" name="{$name}" id="{$label_attr.for}" value="{$TITLE}" placeholder="{intl l='The Store title'}" />
+            </div>
+        {/form_field}
+        {form_field form=$form field="description"}
+            <div class="form-group">
+                <label class="control-label" for="{$label_attr.for}">
+                    {$label}
+                    {if $required}<span class="required">*</span>{/if}
+                </label>
+
+                {form_error form=$form field="description"}{$message}{/form_error}
+
+                <textarea class="form-control" name="{$name}" id="{$label_attr.for}"placeholder="{intl l='The Store description'}">{$DESCRIPTION}</textarea>
+            </div>
+        {/form_field}
+        {form_field form=$form field="admin_id"}
+            <div class="form-group">
+                <label class="control-label" for="{$label_attr.for}">
+                    {$label}
+                    {if $required}<span class="required">*</span>{/if}
+                </label>
+
+                {form_error form=$form field="admin_id"}{$message}{/form_error}
+
+                <input type="integer" class="form-control" name="{$name}" id="{$label_attr.for}" value="{$ADMIN_ID}" placeholder="{intl l='The Store admin_id'}" />
+            </div>
+        {/form_field}
+        {form_field form=$form field="company"}
+            <div class="form-group">
+                <label class="control-label" for="{$label_attr.for}">
+                    {$label}
+                    {if $required}<span class="required">*</span>{/if}
+                </label>
+
+                {form_error form=$form field="company"}{$message}{/form_error}
+
+                <input type="text" class="form-control" name="{$name}" id="{$label_attr.for}" value="{$COMPANY}" placeholder="{intl l='The Store company'}" />
+            </div>
+        {/form_field}
+        {form_field form=$form field="firstname"}
+            <div class="form-group">
+                <label class="control-label" for="{$label_attr.for}">
+                    {$label}
+                    {if $required}<span class="required">*</span>{/if}
+                </label>
+
+                {form_error form=$form field="firstname"}{$message}{/form_error}
+
+                <input type="text" class="form-control" name="{$name}" id="{$label_attr.for}" value="{$FIRSTNAME}" placeholder="{intl l='The Store firstname'}" />
+            </div>
+        {/form_field}
+        {form_field form=$form field="lastname"}
+            <div class="form-group">
+                <label class="control-label" for="{$label_attr.for}">
+                    {$label}
+                    {if $required}<span class="required">*</span>{/if}
+                </label>
+
+                {form_error form=$form field="lastname"}{$message}{/form_error}
+
+                <input type="text" class="form-control" name="{$name}" id="{$label_attr.for}" value="{$LASTNAME}" placeholder="{intl l='The Store lastname'}" />
+            </div>
+        {/form_field}
+        {form_field form=$form field="address1"}
+            <div class="form-group">
+                <label class="control-label" for="{$label_attr.for}">
+                    {$label}
+                    {if $required}<span class="required">*</span>{/if}
+                </label>
+
+                {form_error form=$form field="address1"}{$message}{/form_error}
+
+                <input type="text" class="form-control" name="{$name}" id="{$label_attr.for}" value="{$ADDRESS1}" placeholder="{intl l='The Store address1'}" />
+            </div>
+        {/form_field}
+        {form_field form=$form field="address2"}
+            <div class="form-group">
+                <label class="control-label" for="{$label_attr.for}">
+                    {$label}
+                    {if $required}<span class="required">*</span>{/if}
+                </label>
+
+                {form_error form=$form field="address2"}{$message}{/form_error}
+
+                <input type="text" class="form-control" name="{$name}" id="{$label_attr.for}" value="{$ADDRESS2}" placeholder="{intl l='The Store address2'}" />
+            </div>
+        {/form_field}
+        {form_field form=$form field="address3"}
+            <div class="form-group">
+                <label class="control-label" for="{$label_attr.for}">
+                    {$label}
+                    {if $required}<span class="required">*</span>{/if}
+                </label>
+
+                {form_error form=$form field="address3"}{$message}{/form_error}
+
+                <input type="text" class="form-control" name="{$name}" id="{$label_attr.for}" value="{$ADDRESS3}" placeholder="{intl l='The Store address3'}" />
+            </div>
+        {/form_field}
+        {form_field form=$form field="zipcode"}
+            <div class="form-group">
+                <label class="control-label" for="{$label_attr.for}">
+                    {$label}
+                    {if $required}<span class="required">*</span>{/if}
+                </label>
+
+                {form_error form=$form field="zipcode"}{$message}{/form_error}
+
+                <input type="text" class="form-control" name="{$name}" id="{$label_attr.for}" value="{$ZIPCODE}" placeholder="{intl l='The Store zipcode'}" />
+            </div>
+        {/form_field}
+        {form_field form=$form field="city"}
+            <div class="form-group">
+                <label class="control-label" for="{$label_attr.for}">
+                    {$label}
+                    {if $required}<span class="required">*</span>{/if}
+                </label>
+
+                {form_error form=$form field="city"}{$message}{/form_error}
+
+                <input type="text" class="form-control" name="{$name}" id="{$label_attr.for}" value="{$CITY}" placeholder="{intl l='The Store city'}" />
+            </div>
+        {/form_field}
+        {form_field form=$form field="phone"}
+            <div class="form-group">
+                <label class="control-label" for="{$label_attr.for}">
+                    {$label}
+                    {if $required}<span class="required">*</span>{/if}
+                </label>
+
+                {form_error form=$form field="phone"}{$message}{/form_error}
+
+                <input type="text" class="form-control" name="{$name}" id="{$label_attr.for}" value="{$PHONE}" placeholder="{intl l='The Store phone'}" />
+            </div>
+        {/form_field}
+        {form_field form=$form field="cellphone"}
+            <div class="form-group">
+                <label class="control-label" for="{$label_attr.for}">
+                    {$label}
+                    {if $required}<span class="required">*</span>{/if}
+                </label>
+
+                {form_error form=$form field="cellphone"}{$message}{/form_error}
+
+                <input type="text" class="form-control" name="{$name}" id="{$label_attr.for}" value="{$CELLPHONE}" placeholder="{intl l='The Store cellphone'}" />
+            </div>
+        {/form_field}
+        {form_field form=$form field="vat_number"}
+            <div class="form-group">
+                <label class="control-label" for="{$label_attr.for}">
+                    {$label}
+                    {if $required}<span class="required">*</span>{/if}
+                </label>
+
+                {form_error form=$form field="vat_number"}{$message}{/form_error}
+
+                <input type="text" class="form-control" name="{$name}" id="{$label_attr.for}" value="{$VAT_NUMBER}" placeholder="{intl l='The Store vat_number'}" />
+            </div>
+        {/form_field}
+        {form_field form=$form field="lat"}
+            <div class="form-group">
+                <label class="control-label" for="{$label_attr.for}">
+                    {$label}
+                    {if $required}<span class="required">*</span>{/if}
+                </label>
+
+                {form_error form=$form field="lat"}{$message}{/form_error}
+
+                <input type="text" class="form-control" name="{$name}" id="{$label_attr.for}" value="{$LAT}" placeholder="{intl l='The Store lat'}" />
+            </div>
+        {/form_field}
+        {form_field form=$form field="lng"}
+            <div class="form-group">
+                <label class="control-label" for="{$label_attr.for}">
+                    {$label}
+                    {if $required}<span class="required">*</span>{/if}
+                </label>
+
+                {form_error form=$form field="lng"}{$message}{/form_error}
+
+                <input type="text" class="form-control" name="{$name}" id="{$label_attr.for}" value="{$LNG}" placeholder="{intl l='The Store lng'}" />
+            </div>
+        {/form_field}
+    {/capture}
+
+    {include file="includes/generic-create-dialog.html"
+
+
+        dialog_id       = "store-create"
+        dialog_title    = {intl l="Create an entry of Store" d="store.bo.default"}
+        dialog_body     = {$smarty.capture.store_create nofilter}
+
+        dialog_ok_label     = {intl l="Create"}
+        dialog_cancel_label = {intl l="Cancel"}
+
+        form_action        = {$current_url}
+        form_enctype       = {form_enctype form=$form}
+    }
+    {/form}
+
+
+    {* DELETE modal *}
+
+    {capture "store_delete"}
+        {intl l="Do you really want to delete this Store entry ?" d="store.bo.default"}
+        <input type="hidden" name="store_id" id="store_delete_id" value="" />
+    {/capture}
+
+    {include file="includes/generic-confirm-dialog.html"
+
+        dialog_id       = "store-delete"
+        dialog_title    = {intl l="Delete an entry of Store" d="store.bo.default"}
+        dialog_message  = {$smarty.capture.store_delete nofilter}
+
+        dialog_ok_label     = {intl l="Delete"}
+        dialog_cancel_label = {intl l="Cancel"}
+
+        form_action         = {token_url path='/admin/module/Store/store/delete'}
+    }
+{/block}
+
+{block name="javascript-initialization"}
+    {javascripts file='assets/js/bootstrap-switch/bootstrap-switch.js'}
+        <script src="{$asset_url}"></script>
+    {/javascripts}
+    {javascripts file='assets/js/bootstrap-editable/bootstrap-editable.js'}
+        <script src="{$asset_url}"></script>
+    {/javascripts}
+    <script>
+        $(function() {
+            $('a.store-delete').click(function(ev) {
+                $('#store_delete_id').val($(this).data('id'));
+            });
+
+            {* Inline editing of object position using bootstrap-editable *}
+
+            $('.store-position-change').editable({
+                type        : 'text',
+                title       : '{{intl l="Enter new Store position" d="store.bo.default"}|addslashes nofilter}',
+                mode        : 'popup',
+                inputclass  : 'input-mini',
+                placement   : 'left',
+                success     : function(response, newValue) {
+                    // The URL template
+                    var url = "{url noamp='1' path='/admin/module/Store/store/updatePosition' store_id='__ID__' position='__POS__'}";
+
+                    // Perform subtitutions
+                    url = url.replace('__ID__', $(this).data('id')).replace('__POS__', newValue);
+
+                    // Reload the page
+                    location.href = url;
+                }
+            });
+
+            {* Visibility toggle *}
+
+            $(".visibleToggle").on('switch-change', function(event, data) {
+                $.ajax({
+                    url : "{url path='admin/module/Store/store/toggleVisibility'}",
+                    data : {
+                        store_id : $(this).data('id'),
+                        action : 'visibilityToggle'
+                    }
+                });
+            });
+        });
+    </script>
+{/block}
